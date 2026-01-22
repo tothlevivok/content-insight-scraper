@@ -20,6 +20,9 @@ python_job_cards = [
     h2_element.parent.parent.parent for h2_element in python_jobs
 ]
 
+##for h2_element in python_jobs:
+##    python_job_cards.append(h2_element.parent.parent.parent)
+
 for job_card in python_job_cards:
     title_element = job_card.find("h2", class_="title")
     company_element = job_card.find("h3", class_="company")
@@ -28,3 +31,8 @@ for job_card in python_job_cards:
     print(company_element.text.strip())
     print(location_element.text.strip())
     print()
+
+for job_card in python_job_cards:
+    links = job_card.find_all("a")
+    for link in links:
+        print(link.text.strip())
