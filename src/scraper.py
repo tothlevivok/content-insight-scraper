@@ -14,7 +14,6 @@ results = soup.find(id="ResultsContainer")
 job_cards = results.find_all("div", class_="card-content")
 
 python_jobs = results.find_all("h2", string=lambda text: "python" in text.lower())
-print(len(python_jobs))
 
 python_job_cards = [
     h2_element.parent.parent.parent for h2_element in python_jobs
@@ -30,9 +29,5 @@ for job_card in python_job_cards:
     print(title_element.text.strip())
     print(company_element.text.strip())
     print(location_element.text.strip())
-    print()
-
-for job_card in python_job_cards:
-    links = job_card.find_all("a")
-    for link in links:
-        print(link.text.strip())
+    link_url = job_card.find_all("a")[1]["href"]
+    print(f"Apply here: {link_url}\n")
