@@ -27,5 +27,10 @@ python scraper.py
 ```
 
 ## File structure
-- src/scraper.py  < main python script
-- src/JOBS.pdf  < if generated
+```
+content-insight-scraper/
+├─ src/
+│  └─ scraper.py
+├─ requirements.txt
+└─ README.md
+```
