@@ -5,12 +5,9 @@ from fpdf import FPDF
 URL = "https://realpython.github.io/fake-jobs/"
 page = requests.get(URL)
 
-#print(page.text)
-
 soup = BeautifulSoup(page.content, "html.parser")
 
 results = soup.find(id="ResultsContainer")
-#print(results.prettify())
 
 job_cards = results.find_all("div", class_="card-content")
 
@@ -19,9 +16,6 @@ python_jobs = results.find_all("h2", string=lambda text: "python" in text.lower(
 python_job_cards = [
     h2_element.parent.parent.parent for h2_element in python_jobs
 ]
-
-##for h2_element in python_jobs:
-##    python_job_cards.append(h2_element.parent.parent.parent)
 
 pdf = FPDF()
 pdf.add_page()
@@ -41,15 +35,11 @@ for job_card in python_job_cards:
     pdf.set_text_color(40,40,255)
     pdf.cell(75, 10, txt = title_element.text.strip(), border = 1, align = "C")
     pdf.set_text_color(40,40,40)
-    print(title_element.text.strip())
     pdf.set_font("Arial", size=8)
     pdf.cell(50, 10, txt = company_element.text.strip(), border = 1, align = "C")
-    print(company_element.text.strip())
     pdf.cell(50, 10, txt = location_element.text.strip(), border = 1, align = "C")
-    print(location_element.text.strip())
     link_url = job_card.find_all("a")[1]["href"]
     pdf.cell(15, 10, txt = "link", link=link_url, border = 1, align = "C")
     pdf.cell(50, 10, txt = "", ln = 1)
-    print(f"Apply here: {link_url}\n")
 
 pdf.output("JOBS.pdf")
