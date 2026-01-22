@@ -19,10 +19,12 @@ git clone https://github.com/tothlevivok/content-insight-scraper.git
 
 2. Install dependencies
 ```bash
+cd content-insight-scraper
 pip install -r requirements.txt
   ```
 3. Run:
 ```bash
+cd src
 python scraper.py
 ```
 
