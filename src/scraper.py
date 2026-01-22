@@ -21,3 +21,6 @@ for job_card in job_cards:
     print(company_element.text.strip())
     print(location_element.text.strip())
     print()
+
+python_jobs = results.find_all("h2", string=lambda text: "python" in text.lower())
+print(len(python_jobs))
