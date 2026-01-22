@@ -13,7 +13,14 @@ results = soup.find(id="ResultsContainer")
 
 job_cards = results.find_all("div", class_="card-content")
 
-for job_card in job_cards:
+python_jobs = results.find_all("h2", string=lambda text: "python" in text.lower())
+print(len(python_jobs))
+
+python_job_cards = [
+    h2_element.parent.parent.parent for h2_element in python_jobs
+]
+
+for job_card in python_job_cards:
     title_element = job_card.find("h2", class_="title")
     company_element = job_card.find("h3", class_="company")
     location_element = job_card.find("p", class_="location")
@@ -21,6 +28,3 @@ for job_card in job_cards:
     print(company_element.text.strip())
     print(location_element.text.strip())
     print()
-
-python_jobs = results.find_all("h2", string=lambda text: "python" in text.lower())
-print(len(python_jobs))
