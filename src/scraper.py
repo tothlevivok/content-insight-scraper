@@ -9,9 +9,15 @@ page = requests.get(URL)
 soup = BeautifulSoup(page.content, "html.parser")
 
 results = soup.find(id="ResultsContainer")
-print(results.prettify())
+#print(results.prettify())
 
 job_cards = results.find_all("div", class_="card-content")
 
 for job_card in job_cards:
-    print(job_card, end="\n" * 2)
+    title_element = job_card.find("h2", class_="title")
+    company_element = job_card.find("h3", class_="company")
+    location_element = job_card.find("p", class_="location")
+    print(title_element)
+    print(company_element)
+    print(location_element)
+    print()
